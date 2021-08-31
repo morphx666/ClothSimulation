@@ -4,8 +4,6 @@ using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
 using System;
-using System.Drawing;
-using System.Runtime.InteropServices;
 using Color = SFML.Graphics.Color;
 using System.Collections.Generic;
 
