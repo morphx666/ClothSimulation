@@ -4,8 +4,8 @@ using System;
 
 namespace ClothSimulation.Classes {
     public class Renderer {
-        private PhysicSolver solver;
-        private VertexArray va;
+        private readonly PhysicSolver solver;
+        private readonly VertexArray va;
 
         public Renderer(PhysicSolver s) {
             solver = s;

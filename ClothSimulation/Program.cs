@@ -34,7 +34,7 @@ namespace ClothSimulation {
                 float max_elongation = 1.2f * (2.0f - y / (float)clothHeight);
                 for(UInt32 x = 0; x < clothWidth; x++) {
                     UInt32 idx = solver.AddParticle(new Vector2f(startX + x * linksLength, y * linksLength));
-                    
+
                     // Add left link if there is a particle on the left
                     if(x > 0) {
                         solver.AddLink(idx - 1, idx, max_elongation * 0.9f);
@@ -98,7 +98,7 @@ namespace ClothSimulation {
 
             // Main loop
             const float dt = 1.0f / 60.0f;
-            List<Particle> toBeRemoved = new();
+            List<Particle> toBeRemoved = [];
             while(window.IsOpen) {
                 window.DispatchEvents();
 

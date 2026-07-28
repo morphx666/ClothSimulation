@@ -17,18 +17,18 @@ namespace ClothSimulation.Classes.Engine.Common {
             return (float)Math.Sqrt(v.X * v.X + v.Y * v.Y);
         }
 
-        public static float Angle(Vector2f v_1, Vector2f v_2) {
-            float dot = (float)(v_1.X * v_2.X + v_1.Y * v_2.Y);
-            float det = (float)(v_1.X * v_2.Y - v_1.Y * v_2.X);
+        public static float Angle(Vector2f v1, Vector2f v2) {
+            float dot = (float)(v1.X * v2.X + v1.Y * v2.Y);
+            float det = (float)(v1.X * v2.Y - v1.Y * v2.X);
             return (float)Math.Atan2(det, dot);
         }
 
-        public static float Dot(Vector2f v_1, Vector2f v_2) {
-            return v_1.X * v_2.X + v_1.Y * v_2.Y;
+        public static float Dot(Vector2f v1, Vector2f v2) {
+            return v1.X * v2.X + v1.Y * v2.Y;
         }
 
-        public static float Cross(Vector2f v_1, Vector2f v_2) {
-            return v_1.X * v_2.Y - v_1.Y * v_2.X;
+        public static float Cross(Vector2f v1, Vector2f v2) {
+            return v1.X * v2.Y - v1.Y * v2.X;
         }
 
         public static Vector2f Normal(Vector2f v) {
