@@ -18,7 +18,7 @@ namespace ClothSimulation {
         public static void Main(string[] args) {
             UInt32 windowWidth = 1280;
             UInt32 windowHeight = 1024;
-            RenderWindow window = new(new VideoMode(windowWidth, windowHeight), "Cloth Simulation", Styles.Close);
+            RenderWindow window = new(new VideoMode(new Vector2u(windowWidth, windowHeight)), "Cloth Simulation", Styles.Close, State.Windowed);
             window.SetActive(true);
 
             PhysicSolver solver = new();
@@ -57,8 +57,8 @@ namespace ClothSimulation {
 
             // Add events callback for mouse control
             window.MouseMoved += (object s, MouseMoveEventArgs e) => {
-                mousePosition.X = e.X;
-                mousePosition.Y = e.Y;
+                mousePosition.X = e.Position.X;
+                mousePosition.Y = e.Position.Y;
             };
             window.MouseButtonPressed += (object s, MouseButtonEventArgs e) => {
                 switch(e.Button) {

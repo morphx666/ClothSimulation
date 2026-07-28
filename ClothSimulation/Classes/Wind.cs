@@ -14,30 +14,29 @@ namespace ClothSimulation.Classes {
         }
 
         public void Update(float dt) {
-            rect.Left += 1.0f * force.X * dt;
-            //rect.top += force.y * dt;
+            rect.Position += new Vector2f(force.X * dt, rect.Top);
         }
     }
 
     public class WindManager {
-        public List<Wind> winds = new();
-        public float world_width = 0.0f;
+        public List<Wind> winds = [];
+        public float worldWidth = 0.0f;
 
         public WindManager(float width) {
-            world_width = width;
+            worldWidth = width;
         }
 
         public void Update(PhysicSolver solver, float dt) {
             foreach(Wind w in winds) {
                 w.Update(dt);
                 foreach(Particle p in solver.Objects) {
-                    if(w.rect.Contains(p.Position.X, p.Position.Y)) {
+                    if(w.rect.Contains(new Vector2f(p.Position.X, p.Position.Y))) {
                         p.Forces += 1.0f * w.force / dt;
                     }
                 }
 
-                if(w.rect.Left > world_width) {
-                    w.rect.Left = -w.rect.Width;
+                if(w.rect.Left > worldWidth) {
+                    w.rect.Position = new Vector2f(-w.rect.Width, w.rect.Top);
                 }
             }
         }
