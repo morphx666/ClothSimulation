@@ -84,13 +84,13 @@ namespace ClothSimulation {
             window.Closed += (_, __) => window.Close();
 
             // Add 2 wind waves
-            WindManager wind = new(windowWidth);
-            wind.winds.Add(new(
+            WindManager windMan = new(windowWidth);
+            windMan.Winds.Add(new(
                 new Vector2f(0.0f, 0.0f),
                 new Vector2f(100.0f, windowHeight),
                 new Vector2f(1000.0f, 0.0f)
             ));
-            wind.winds.Add(new(
+            windMan.Winds.Add(new(
                 new Vector2f(0.0f, 0.0f),
                 new Vector2f(20.0f, windowHeight / 2.0f),
                 new Vector2f(3000.0f, 90.0f)
@@ -132,7 +132,7 @@ namespace ClothSimulation {
                 }
 
                 // Update physics
-                wind.Update(solver, dt);
+                windMan.Update(solver, dt);
                 solver.Update(dt);
 
                 window.Clear(Color.Black);
