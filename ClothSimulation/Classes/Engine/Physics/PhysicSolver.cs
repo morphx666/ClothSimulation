@@ -4,18 +4,18 @@ using System.Collections.Generic;
 
 namespace ClothSimulation.Classes.Engine.Physics {
     public class PhysicSolver {
-        public readonly List<Particle> Objects = new();
-        public readonly List<LinkConstraint> Constraints = new();
+        public readonly List<Particle> Objects = [];
+        public readonly List<LinkConstraint> Constraints = [];
 
         // Simulator iterations count
         private readonly int solverIterations;
         private readonly int subSteps;
-        private const float frictionCoef = 0.5f;
-        private readonly List<LinkConstraint> toBeRemoved = new();
+        private const float frictionCoefficient = 0.5f;
+        private readonly List<LinkConstraint> toBeRemoved = [];
 
-        public PhysicSolver() {
-            solverIterations = 1;
-            subSteps = 16;
+        public PhysicSolver(int iterations = 1, int subSteps = 16) {
+            solverIterations = iterations;
+            this.subSteps = subSteps;
         }
 
         public void Update(float dt) {
@@ -39,7 +39,7 @@ namespace ClothSimulation.Classes.Engine.Physics {
 
         public void ApplyAirFriction() {
             foreach(Particle p in Objects) {
-                p.Forces -= p.Velocity * frictionCoef;
+                p.Forces -= p.Velocity * frictionCoefficient;
             }
         }
 

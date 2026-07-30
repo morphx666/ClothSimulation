@@ -5,7 +5,7 @@ namespace ClothSimulation.Classes.Engine.Physics {
     public class Particle {
         public float Mass = 1.0f;
         public Vector2f Position;
-        private Vector2f position_old;
+        private Vector2f positionOld;
         public Vector2f Velocity;
         public Vector2f Forces;
         public bool IsMoving = true;
@@ -13,18 +13,18 @@ namespace ClothSimulation.Classes.Engine.Physics {
 
         public Particle(Vector2f pos) {
             Position = pos;
-            position_old = pos;
+            positionOld = pos;
         }
 
         public void Update(float dt) {
             if(!IsMoving) return;
-            position_old = Position;
+            positionOld = Position;
             Velocity += (Forces / Mass) * dt;
             Position += Velocity * dt;
         }
 
         public void UpdateDerivatives(float dt) {
-            Velocity = (Position - position_old) / dt;
+            Velocity = (Position - positionOld) / dt;
             Forces = new();
         }
 

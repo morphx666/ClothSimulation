@@ -10,11 +10,11 @@ namespace ClothSimulation.Classes.Engine.Physics {
         public float Strength = 1.0f;
         public bool Broken = false;
 
-        public LinkConstraint(Particle p_1, Particle p_2) {
-            Particle1 = p_1;
-            Particle2 = p_2;
+        public LinkConstraint(Particle p1, Particle p2) {
+            Particle1 = p1;
+            Particle2 = p2;
 
-            Distance = MathVec2.Length(p_1.Position - p_2.Position);
+            Distance = MathVec2.Length(p1.Position - p2.Position);
         }
 
         public bool IsValid() {
@@ -24,18 +24,18 @@ namespace ClothSimulation.Classes.Engine.Physics {
 
         public void Solve() {
             if(!IsValid()) { return; }
-            Particle p_1 = Particle1;
-            Particle p_2 = Particle2;
-            Vector2f v = p_1.Position - p_2.Position;
+            Particle p1 = Particle1;
+            Particle p2 = Particle2;
+            Vector2f v = p1.Position - p2.Position;
             float dist = MathVec2.Length(v);
             if(dist > Distance) {
                 Broken = dist > Distance * MaxElongationRatio;
                 Vector2f n = v / dist;
                 float c = Distance - dist;
-                Vector2f p = -(c * Strength) / (p_1.Mass + p_2.Mass) * n;
+                Vector2f p = -(c * Strength) / (p1.Mass + p2.Mass) * n;
                 // Apply position correction
-                p_1.Move(-p / p_1.Mass);
-                p_2.Move(p / p_2.Mass);
+                p1.Move(-p / p1.Mass);
+                p2.Move(p / p2.Mass);
             }
         }
     }

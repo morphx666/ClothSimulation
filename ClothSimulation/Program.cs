@@ -86,18 +86,19 @@ namespace ClothSimulation {
             // Add 2 wind waves
             WindManager wind = new(windowWidth);
             wind.winds.Add(new(
-                new Vector2f(100.0f, windowHeight),
                 new Vector2f(0.0f, 0.0f),
+                new Vector2f(100.0f, windowHeight),
                 new Vector2f(1000.0f, 0.0f)
             ));
             wind.winds.Add(new(
-                new Vector2f(20.0f, windowHeight),
                 new Vector2f(0.0f, 0.0f),
-                new Vector2f(3000.0f, 0.0f)
+                new Vector2f(20.0f, windowHeight / 2.0f),
+                new Vector2f(3000.0f, 90.0f)
             ));
 
             // Main loop
             const float dt = 1.0f / 60.0f;
+
             List<Particle> toBeRemoved = [];
             while(window.IsOpen) {
                 window.DispatchEvents();
@@ -136,7 +137,6 @@ namespace ClothSimulation {
             Vector2f v = center - p.Position;
             return v.X * v.X + v.Y * v.Y < radius * radius;
         }
-
 
         private static void ApplyForceOnCloth(Vector2f position, float radius, Vector2f force, PhysicSolver solver) {
             foreach(Particle p in solver.Objects) {

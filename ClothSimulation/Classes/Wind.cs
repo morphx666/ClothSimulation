@@ -8,13 +8,13 @@ namespace ClothSimulation.Classes {
         public FloatRect rect;
         public Vector2f force;
 
-        public Wind(Vector2f s, Vector2f p, Vector2f f) {
-            rect = new(p, s);
-            force = f;
+        public Wind(Vector2f position, Vector2f size, Vector2f force) {
+            rect = new(position, size);
+            this.force = force;
         }
 
         public void Update(float dt) {
-            rect.Position += new Vector2f(force.X * dt, rect.Top);
+            rect.Position += new Vector2f(force.X * dt, 0 * force.Y * dt);
         }
     }
 
