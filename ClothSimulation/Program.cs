@@ -97,10 +97,18 @@ namespace ClothSimulation {
             ));
 
             // Main loop
-            const float dt = 1.0f / 60.0f;
+            // Aim for 60 FPS, but feed the solver the time the frame actually took so the
+            // simulation runs at wall-clock speed instead of tracking the frame rate.
+            const UInt32 targetFps = 60;
+            const float minDt = 1.0f / 1000.0f;   // guard against a zero-length frame (division by dt below)
+            const float maxDt = 1.0f / 20.0f;     // clamp a stalled frame so the solver can't explode
+            window.SetFramerateLimit(targetFps);
+            Clock frameClock = new();
 
             List<Particle> toBeRemoved = [];
             while(window.IsOpen) {
+                float dt = Math.Clamp(frameClock.Restart().AsSeconds(), minDt, maxDt);
+
                 window.DispatchEvents();
 
                 if(isDragging) {
