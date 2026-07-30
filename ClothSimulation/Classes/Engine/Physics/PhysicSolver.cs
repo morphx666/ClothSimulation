@@ -19,14 +19,14 @@ namespace ClothSimulation.Classes.Engine.Physics {
         }
 
         public void Update(float dt) {
-            float sub_step_dt = dt / subSteps;
+            float subStepDt = dt / subSteps;
             RemoveBrokenLinks();
             for(int i = subSteps; i-- > 0;) {
                 ApplyGravity();
                 ApplyAirFriction();
-                UpdatePositions(sub_step_dt);
+                UpdatePositions(subStepDt);
                 SolveConstraints();
-                UpdateDerivatives(sub_step_dt);
+                UpdateDerivatives(subStepDt);
             }
         }
 

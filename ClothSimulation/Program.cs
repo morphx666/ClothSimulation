@@ -31,18 +31,18 @@ namespace ClothSimulation {
 
             // Initialize the cloth
             for(UInt32 y = 0; y < clothHeight; y++) {
-                float max_elongation = 1.2f * (2.0f - y / (float)clothHeight);
+                float maxElongation = 1.2f * (2.0f - y / (float)clothHeight);
                 for(UInt32 x = 0; x < clothWidth; x++) {
                     UInt32 idx = solver.AddParticle(new Vector2f(startX + x * linksLength, y * linksLength));
 
                     // Add left link if there is a particle on the left
                     if(x > 0) {
-                        solver.AddLink(idx - 1, idx, max_elongation * 0.9f);
+                        solver.AddLink(idx - 1, idx, maxElongation * 0.9f);
                     }
 
                     // Add top link if there is a particle on the top
                     if(y > 0) {
-                        solver.AddLink(idx - clothWidth, idx, max_elongation);
+                        solver.AddLink(idx - clothWidth, idx, maxElongation);
                     } else {
                         // If not, pin the particle
                         solver.Objects[(int)idx].IsMoving = false;
